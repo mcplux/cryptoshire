@@ -1,4 +1,4 @@
 <template>
-  <h1>CryptoLayout</h1>
+  <h1>AppLayout</h1>
   <RouterView />
 </template>

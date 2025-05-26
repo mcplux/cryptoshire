@@ -1,9 +1,9 @@
 import type { RouteRecordRaw } from 'vue-router'
-import CryptoLayout from '../layouts/CryptoLayout.vue'
+import AppLayout from '@/modules/common/layouts/AppLayout.vue'
 
 export const cryptoRoutes: RouteRecordRaw = {
   path: '/crytocurrencies',
-  component: CryptoLayout,
+  component: AppLayout,
   children: [
     {
       path: '',
