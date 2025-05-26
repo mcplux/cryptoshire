@@ -1,4 +1,15 @@
 <template>
-  <h1>AppLayout</h1>
-  <RouterView />
+  <header class="bg-blue-400 py-8 px-5 shadow-lg">
+    <RouterLink :to="{ name: 'cryptos' }" class="font-bold text-3xl md:text-4xl">
+      CryptoShire
+    </RouterLink>
+  </header>
+
+  <main class="mt-10 px-5">
+    <RouterView />
+  </main>
+
+  <footer class="text-gray-700 text-center mt-10">
+    &copy;All rights reserved - CryptoShire - {{ new Date().getFullYear() }}
+  </footer>
 </template>
