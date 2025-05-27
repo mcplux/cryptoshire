@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "CryptoShire",
+    "subtitle": "Explore the most important cryptocurrencies on the market."
+  },
+  "crypto": {
+    "price": "Price",
+    "change": "Change"
+  }
+}

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { formatCurrency, formatPercent } from '@/modules/common/helpers'
 import type { Crypto } from '../interfaces'
+
+const { t } = useI18n()
 
 const props = defineProps<{
   crypto: Crypto
@@ -24,10 +27,11 @@ const isChangePositive = computed(() => +props.crypto.changePercent24Hr >= 0)
 
     <div class="mt-5 flex flex-col gap-2">
       <p class="text-lg">
-        Price (USD): <span class="font-semibold">{{ formatCurrency(crypto.priceUsd) }}</span>
+        {{ t('crypto.price') }}:
+        <span class="font-semibold">{{ formatCurrency(crypto.priceUsd) }}</span>
       </p>
       <p class="text-lg">
-        Change (24h):
+        {{ t('crypto.change') }} (24h):
         <span class="font-semibold">{{ formatPercent(crypto.changePercent24Hr) }}</span>
       </p>
     </div>
