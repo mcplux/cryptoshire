@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
-import { defineStore } from 'pinia'
-import type { Crypto } from '../interfaces'
+
 import { getAssetsAction } from '../actions/get-assets.action'
+import type { Crypto } from '../interfaces'
 
 enum CryptoStatus {
   LOADING = 'loading',
@@ -9,7 +9,7 @@ enum CryptoStatus {
   ERROR = 'error',
 }
 
-export const useCryptosStore = defineStore('cryptos', () => {
+export const useCrypto = () => {
   const cryptos = ref<Crypto[]>([])
 
   const cryptoStatus = ref<CryptoStatus>(CryptoStatus.SUCCESS)
@@ -32,4 +32,4 @@ export const useCryptosStore = defineStore('cryptos', () => {
     isLoading: computed(() => cryptoStatus.value === CryptoStatus.LOADING),
     isError: computed(() => cryptoStatus.value === CryptoStatus.ERROR),
   }
-})
+}

@@ -5,6 +5,7 @@ import { en } from '@/locales'
 const messages = { en }
 
 const i18n = createI18n({
+  legacy: false,
   locale: 'en',
   fallbackLocale: 'en',
   messages,

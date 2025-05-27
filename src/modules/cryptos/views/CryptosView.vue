@@ -2,15 +2,15 @@
 import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useCryptosStore } from '../stores/cryptos.store'
+import { useCrypto } from '../composables/useCrypto'
 import CryptoCard from '../components/CryptoCard.vue'
 import LoaderSpinner from '@/modules/common/components/LoaderSpinner.vue'
 
-const cryptosStore = useCryptosStore()
+const { cryptos, getCryptos, isLoading, isSuccess } = useCrypto()
 const { t } = useI18n()
 
 onMounted(async () => {
-  await cryptosStore.getCryptos()
+  await getCryptos()
 })
 </script>
 
@@ -20,10 +20,10 @@ onMounted(async () => {
 
   <div
     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-10 gap-5"
-    v-if="cryptosStore.isSuccess"
+    v-if="isSuccess"
   >
-    <CryptoCard v-for="crypto in cryptosStore.cryptos" :key="crypto.id" :crypto="crypto" />
+    <CryptoCard v-for="crypto in cryptos" :key="crypto.id" :crypto="crypto" />
   </div>
 
-  <LoaderSpinner v-if="cryptosStore.isLoading" />
+  <LoaderSpinner v-if="isLoading" />
 </template>
