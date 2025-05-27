@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import CryptoCard from '../components/CryptoCard.vue'
+import { getAssetsAction } from '../actions/get-assets.action'
+
+onMounted(async () => {
+  console.log(await getAssetsAction())
+})
 </script>
 
 <template>
