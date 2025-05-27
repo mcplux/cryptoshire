@@ -12,9 +12,10 @@ const isChangePositive = computed(() => +props.crypto.changePercent24Hr >= 0)
 </script>
 
 <template>
-  <div
+  <RouterLink
     class="border border-l-8 border-gray-700 p-5 rounded shadow hover:scale-105 hover:bg-gray-100 transition-all"
     :class="[isChangePositive ? 'border-l-green-600' : 'border-l-red-600']"
+    :to="{ name: 'crypto', params: { id: crypto.id } }"
   >
     <h2 class="font-bold text-xl truncate uppercase">
       #{{ crypto.rank }} {{ crypto.name }}
@@ -30,5 +31,5 @@ const isChangePositive = computed(() => +props.crypto.changePercent24Hr >= 0)
         <span class="font-semibold">{{ formatPercent(crypto.changePercent24Hr) }}</span>
       </p>
     </div>
-  </div>
+  </RouterLink>
 </template>

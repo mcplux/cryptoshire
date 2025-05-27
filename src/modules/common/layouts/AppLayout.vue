@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-blue-400 py-8 px-5 shadow-lg">
+  <header class="bg-blue-400 text-white py-8 px-5 shadow-lg">
     <RouterLink :to="{ name: 'cryptos' }" class="font-bold text-3xl md:text-4xl">
       CryptoShire
     </RouterLink>

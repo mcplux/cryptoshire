@@ -10,5 +10,10 @@ export const cryptoRoutes: RouteRecordRaw = {
       name: 'cryptos',
       component: () => import('../views/CryptosView.vue'),
     },
+    {
+      path: ':id',
+      name: 'crypto',
+      component: () => import('../views/CryptoView.vue'),
+    },
   ],
 }
