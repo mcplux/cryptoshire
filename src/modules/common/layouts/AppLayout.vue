@@ -5,7 +5,7 @@
     </RouterLink>
   </header>
 
-  <main class="mt-10 px-5">
+  <main class="mt-10 px-5 container mx-auto">
     <RouterView />
   </main>
 
