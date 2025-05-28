@@ -5,7 +5,7 @@ import { usePreferencesStore } from './modules/common/stores/preferences.store'
 const preferencesStore = usePreferencesStore()
 
 onMounted(() => {
-  preferencesStore.getUserPreferences()
+  preferencesStore.getUserTheme()
 })
 </script>
 

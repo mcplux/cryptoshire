@@ -1,8 +1,21 @@
+<script setup lang="ts">
+import { usePreferencesStore } from '../stores/preferences.store'
+import SunIcon from '../components/icons/SunIcon.vue'
+
+const preferencesStore = usePreferencesStore()
+</script>
+
 <template>
-  <header class="bg-blue-400 dark:bg-slate-900 text-white py-8 px-5 shadow-lg">
+  <header
+    class="bg-blue-400 dark:bg-slate-900 text-white py-8 px-5 shadow-lg flex items-center justify-between"
+  >
     <RouterLink :to="{ name: 'cryptos' }" class="font-bold text-3xl md:text-4xl">
       CryptoShire
     </RouterLink>
+
+    <button>
+      <SunIcon />
+    </button>
   </header>
 
   <main class="mt-10 px-5 container mx-auto">
