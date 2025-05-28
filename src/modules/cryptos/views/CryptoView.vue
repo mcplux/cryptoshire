@@ -1,12 +1,29 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
+import { useCrypto } from '../composables/useCrypto'
+import LoaderSpinner from '@/modules/common/components/LoaderSpinner.vue'
+import ErrorMessage from '@/modules/common/components/ErrorMessage.vue'
+
 const route = useRoute()
+const { crypto, cryptoError, getCrypto, isSuccess, isLoading, isError } = useCrypto()
+
 const id = route.params.id as string
 
-console.log(id)
+onMounted(async () => {
+  await getCrypto(id)
+
+  console.log(crypto.value)
+})
 </script>
 
 <template>
-  <h1 class="text-2xl md:text-3xl text-center font-bold">{{ id.toUpperCase() }}</h1>
+  <div v-if="isSuccess && crypto">
+    <h1 class="text-2xl md:text-3xl text-center font-bold">{{ crypto.name }}</h1>
+  </div>
+
+  <LoaderSpinner v-if="isLoading" />
+
+  <ErrorMessage v-if="isError" :error="cryptoError" />
 </template>
