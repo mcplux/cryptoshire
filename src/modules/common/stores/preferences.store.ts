@@ -14,6 +14,10 @@ export const usePreferencesStore = defineStore('preferences', () => {
     }
   }
 
+  const toggleTheme = () => {
+    theme.value = theme.value === 'dark' ? 'light' : 'dark'
+  }
+
   watch(theme, (newTheme) => {
     const html = document.documentElement
     if (newTheme === 'dark') {
@@ -27,6 +31,7 @@ export const usePreferencesStore = defineStore('preferences', () => {
 
   return {
     getUserTheme,
+    toggleTheme,
     isDark: computed(() => theme.value === 'dark'),
   }
 })

@@ -13,6 +13,7 @@ import { Line } from 'vue-chartjs'
 
 import { usePreferencesStore } from '@/modules/common/stores/preferences.store'
 import type { CryptoHistory } from '../interfaces'
+import { computed } from 'vue'
 
 const GRAY_200 = '#e5e7eb'
 const GRAY_700 = '#364153'
@@ -28,7 +29,7 @@ const props = defineProps<{
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
-const options = {
+const options = computed(() => ({
   responsive: true,
   scales: {
     x: {
@@ -40,7 +41,7 @@ const options = {
       grid: { color: preferencesStore.isDark ? GRAY_700 : GRAY_200 },
     },
   },
-}
+}))
 
 const labels = props.history.map((h) => h.date.split('T')[0])
 const datasets = [
