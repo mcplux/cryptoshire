@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 
-import type { Crypto } from '../interfaces'
-import { getAssetAction, getAssetsAction } from '../actions'
+import type { Crypto, CryptoHistory } from '../interfaces'
+import { getAssetAction, getAssetHistoryAction, getAssetsAction } from '../actions'
 
 enum CryptoStatus {
   LOADING = 'loading',
@@ -12,6 +12,7 @@ enum CryptoStatus {
 export const useCrypto = () => {
   const cryptos = ref<Crypto[]>([])
   const crypto = ref<Crypto | null>(null)
+  const cryptoHistory = ref<CryptoHistory[]>([])
   const cryptoError = ref('')
 
   const cryptoStatus = ref<CryptoStatus>(CryptoStatus.SUCCESS)
@@ -35,14 +36,29 @@ export const useCrypto = () => {
   const getCrypto = async (id: string): Promise<void> => {
     cryptoStatus.value = CryptoStatus.LOADING
 
-    const response = await getAssetAction(id)
-    if (!response.ok) {
+    const [assetResponse, historyResponse] = await Promise.all([
+      getAssetAction(id),
+      getAssetHistoryAction(id),
+    ])
+
+    if (!assetResponse.ok) {
       crypto.value = null
-      cryptoError.value = response.msg
+      cryptoHistory.value = []
+      cryptoError.value = assetResponse.msg
       cryptoStatus.value = CryptoStatus.ERROR
       return
     }
-    crypto.value = response.crypto
+
+    if (!historyResponse.ok) {
+      crypto.value = null
+      cryptoHistory.value = []
+      cryptoError.value = historyResponse.msg
+      cryptoStatus.value = CryptoStatus.ERROR
+      return
+    }
+
+    crypto.value = assetResponse.crypto
+    cryptoHistory.value = historyResponse.history
     cryptoError.value = ''
     cryptoStatus.value = CryptoStatus.SUCCESS
   }
@@ -50,6 +66,7 @@ export const useCrypto = () => {
   return {
     cryptos,
     crypto,
+    cryptoHistory,
     cryptoError,
     getCryptos,
     getCrypto,
