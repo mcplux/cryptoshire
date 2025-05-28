@@ -1,15 +1,32 @@
 import coinCapApi from '@/modules/common/api/coin-cap.api'
-import type { GetAssetsResponse } from '../interfaces'
+import type { Crypto } from '../interfaces'
 
-export const getAssetsAction = async () => {
+type GetAssetsResponse =
+  | {
+      ok: true
+      cryptos: Crypto[]
+    }
+  | {
+      ok: false
+      msg: string
+    }
+
+export const getAssetsAction = async (): Promise<GetAssetsResponse> => {
   try {
-    const {
-      data: { data },
-    } = await coinCapApi.get<GetAssetsResponse>('/assets')
+    const { data } = await coinCapApi.get<{
+      data: Crypto[]
+      timestamp: number
+    }>('/assets')
 
-    return data
+    return {
+      ok: true,
+      cryptos: data.data,
+    }
   } catch (error) {
     console.error(error)
-    throw new Error('Something went wrong')
+    return {
+      ok: false,
+      msg: 'Something went wrong while fetching cryptos',
+    }
   }
 }

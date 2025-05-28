@@ -6,7 +6,7 @@ import { useCrypto } from '../composables/useCrypto'
 import CryptoCard from '../components/CryptoCard.vue'
 import LoaderSpinner from '@/modules/common/components/LoaderSpinner.vue'
 
-const { cryptos, getCryptos, isLoading, isSuccess } = useCrypto()
+const { cryptos, cryptoError, getCryptos, isLoading, isSuccess, isError } = useCrypto()
 const { t } = useI18n()
 
 onMounted(async () => {
@@ -26,4 +26,8 @@ onMounted(async () => {
   </div>
 
   <LoaderSpinner v-if="isLoading" />
+
+  <p v-if="isError" class="mt-10 text-center bg-red-200 text-red-700 py-5">
+    {{ cryptoError }}
+  </p>
 </template>

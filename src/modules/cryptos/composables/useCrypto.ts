@@ -11,22 +11,29 @@ enum CryptoStatus {
 
 export const useCrypto = () => {
   const cryptos = ref<Crypto[]>([])
+  const cryptoError = ref('')
 
   const cryptoStatus = ref<CryptoStatus>(CryptoStatus.SUCCESS)
 
   const getCryptos = async () => {
     cryptoStatus.value = CryptoStatus.LOADING
-    try {
-      cryptos.value = await getAssetsAction()
-      cryptoStatus.value = CryptoStatus.SUCCESS
-    } catch (error) {
-      console.error(error)
+
+    const response = await getAssetsAction()
+    if (!response.ok) {
+      cryptos.value = []
+      cryptoError.value = response.msg
       cryptoStatus.value = CryptoStatus.ERROR
+      return
     }
+
+    cryptos.value = response.cryptos
+    cryptoError.value = ''
+    cryptoStatus.value = CryptoStatus.SUCCESS
   }
 
   return {
     cryptos,
+    cryptoError,
     getCryptos,
     isSuccess: computed(() => cryptoStatus.value === CryptoStatus.SUCCESS),
     isLoading: computed(() => cryptoStatus.value === CryptoStatus.LOADING),
