@@ -15,8 +15,6 @@ const id = route.params.id as string
 
 onMounted(async () => {
   await getCrypto(id)
-
-  console.log(crypto.value, cryptoHistory.value)
 })
 </script>
 

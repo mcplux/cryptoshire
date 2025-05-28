@@ -10,7 +10,16 @@ import {
   Legend,
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
+
+import { usePreferencesStore } from '@/modules/common/stores/preferences.store'
 import type { CryptoHistory } from '../interfaces'
+
+const GRAY_200 = '#e5e7eb'
+const GRAY_700 = '#364153'
+const INDIGO_400 = '#7c86ff'
+const INDIGO_500 = '#615fff'
+
+const preferencesStore = usePreferencesStore()
 
 const props = defineProps<{
   history: CryptoHistory[]
@@ -22,8 +31,14 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const options = {
   responsive: true,
   scales: {
-    x: { ticks: { color: '#364153' }, grid: { color: '#e1e1e1' } },
-    y: { ticks: { color: '#364153' }, grid: { color: '#e1e1e1' } },
+    x: {
+      ticks: { color: preferencesStore.isDark ? GRAY_200 : GRAY_700 },
+      grid: { color: preferencesStore.isDark ? GRAY_700 : GRAY_200 },
+    },
+    y: {
+      ticks: { color: preferencesStore.isDark ? GRAY_200 : GRAY_700 },
+      grid: { color: preferencesStore.isDark ? GRAY_700 : GRAY_200 },
+    },
   },
 }
 
@@ -32,8 +47,8 @@ const datasets = [
   {
     label: props.name,
     data: props.history.map((h) => +h.priceUsd),
-    borderColor: '#6366f1',
-    backgroundColor: '#818cf8',
+    borderColor: INDIGO_500,
+    backgroundColor: INDIGO_400,
   },
 ]
 </script>
