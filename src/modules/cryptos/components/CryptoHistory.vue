@@ -40,9 +40,9 @@ const datasets = [
 
 <template>
   <div class="mt-10 container mx-auto">
-    <h2 class="text-center text-2xl font-bold">History</h2>
+    <h2 class="text-center text-2xl font-bold dark:text-white">History</h2>
 
-    <div class="overflow-x-scroll lg:overflow-hidden">
+    <div class="overflow-x-scroll lg:overflow-hidden mt-5">
       <div class="w-[1024px] lg:w-full mx-auto">
         <Line id="history-chart" :options="options" :data="{ labels, datasets }" />
       </div>

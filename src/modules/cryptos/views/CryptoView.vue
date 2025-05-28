@@ -22,7 +22,7 @@ onMounted(async () => {
 
 <template>
   <div v-if="isSuccess && crypto">
-    <h1 class="text-2xl md:text-3xl text-center font-bold">{{ crypto.name }}</h1>
+    <h1 class="text-2xl md:text-3xl text-center font-bold dark:text-white">{{ crypto.name }}</h1>
 
     <CryptoInfo :crypto="crypto" />
     <CryptoHistory :history="cryptoHistory" :name="crypto.name" />

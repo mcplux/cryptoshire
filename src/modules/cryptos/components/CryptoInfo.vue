@@ -17,48 +17,58 @@ const isChangePositive = computed(() => +props.crypto.changePercent24Hr >= 0)
 <template>
   <div class="max-w-4xl mx-auto p-5 flex flex-col sm:flex-row justify-between md:items-center">
     <div>
-      <p class="text-gray-700 mt-5 text-xl">
-        {{ t('crypto.rank') }}: <span class="font-bold text-black">#{{ crypto.rank }}</span>
+      <p class="text-gray-700 dark:text-gray-300 mt-5 text-xl">
+        {{ t('crypto.rank') }}:
+        <span class="font-bold text-black dark:text-white">#{{ crypto.rank }}</span>
       </p>
 
-      <p class="text-gray-700 mt-5 text-xl">
+      <p class="text-gray-700 dark:text-gray-300 mt-5 text-xl">
         {{ t('crypto.priceUsd') }}:
-        <span class="font-bold text-black">{{ formatCurrency(crypto.priceUsd) }}</span>
+        <span class="font-bold text-black dark:text-white">{{
+          formatCurrency(crypto.priceUsd)
+        }}</span>
       </p>
 
-      <p class="text-gray-700 mt-5 text-xl">
+      <p class="text-gray-700 dark:text-gray-300 mt-5 text-xl">
         {{ t('crypto.change24H') }}:
-        <span :class="['font-bold', isChangePositive ? 'text-green-400' : 'text-red-400']">
+        <span
+          :class="[
+            'font-bold',
+            isChangePositive
+              ? 'text-green-400 dark:text-green-600'
+              : 'text-red-400 dark:text-red-600',
+          ]"
+        >
           {{ formatPercent(crypto.changePercent24Hr) }}
         </span>
       </p>
     </div>
 
     <div>
-      <p class="text-gray-700 mt-5 text-xl">
+      <p class="text-gray-700 dark:text-gray-300 mt-5 text-xl">
         {{ t('crypto.supply') }}:
-        <span class="font-bold text-black">
+        <span class="font-bold text-black dark:text-white">
           {{ crypto.symbol }} {{ formatNumber(crypto.supply) }}
         </span>
       </p>
 
-      <p class="text-gray-700 mt-5 text-xl">
+      <p class="text-gray-700 dark:text-gray-300 mt-5 text-xl">
         {{ t('crypto.maxSupply') }}:
-        <span class="font-bold text-black">
+        <span class="font-bold text-black dark:text-white">
           {{ crypto.symbol }} {{ formatNumber(crypto.maxSupply) ?? '-' }}
         </span>
       </p>
 
-      <p class="text-gray-700 mt-5 text-xl">
+      <p class="text-gray-700 dark:text-gray-300 mt-5 text-xl">
         {{ t('crypto.volume24H') }}:
-        <span class="font-bold text-black">
+        <span class="font-bold text-black dark:text-white">
           {{ formatCurrency(crypto.volumeUsd24Hr) }}
         </span>
       </p>
 
-      <p class="text-gray-700 mt-5 text-xl">
+      <p class="text-gray-700 dark:text-gray-300 mt-5 text-xl">
         {{ t('crypto.marketCap') }}:
-        <span class="font-bold text-black">
+        <span class="font-bold text-black dark:text-white">
           {{ formatCurrency(crypto.marketCapUsd) }}
         </span>
       </p>
