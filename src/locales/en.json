@@ -4,7 +4,12 @@
     "subtitle": "Explore the most important cryptocurrencies on the market."
   },
   "crypto": {
-    "price": "Price",
-    "change": "Change"
+    "rank": "Rank",
+    "priceUsd": "Price (USD)",
+    "change24H": "Change (24h)",
+    "supply": "Supply",
+    "maxSupply": "Max Supply",
+    "volume24H": "Volume (24h)",
+    "marketCap": "Market Cap"
   }
 }

@@ -27,11 +27,11 @@ const isChangePositive = computed(() => +props.crypto.changePercent24Hr >= 0)
 
     <div class="mt-5 flex flex-col gap-2">
       <p class="text-lg">
-        {{ t('crypto.price') }}:
+        {{ t('crypto.priceUsd') }}:
         <span class="font-semibold">{{ formatCurrency(crypto.priceUsd) }}</span>
       </p>
       <p class="text-lg">
-        {{ t('crypto.change') }} (24h):
+        {{ t('crypto.change24H') }}:
         <span class="font-semibold">{{ formatPercent(crypto.changePercent24Hr) }}</span>
       </p>
     </div>
