@@ -1,8 +1,8 @@
 import { createI18n } from 'vue-i18n'
 
-import { en } from '@/locales'
+import { en, es } from '@/locales'
 
-const messages = { en }
+const messages = { en, es }
 
 const i18n = createI18n({
   legacy: false,

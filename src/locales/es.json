@@ -1,0 +1,15 @@
+{
+  "app": {
+    "title": "CryptoShire",
+    "subtitle": "Explora las criptomonedas más importantes del mercado."
+  },
+  "crypto": {
+    "rank": "Rango",
+    "priceUsd": "Precio (USD)",
+    "change24H": "Cambio (24h)",
+    "supply": "Suministro",
+    "maxSupply": "Suministro Máx.",
+    "volume24H": "Volumen (24h)",
+    "marketCap": "Cap. de Mercado"
+  }
+}

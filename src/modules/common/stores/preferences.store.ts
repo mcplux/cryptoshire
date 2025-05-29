@@ -17,9 +17,6 @@ export const usePreferencesStore = defineStore('preferences', () => {
 
   const isValidTheme = (value: string): value is Theme => VALID_THEMES.includes(value as Theme)
 
-  const isValidLanguage = (value: string): value is Language =>
-    VALID_LANGUAGES.includes(value as Language)
-
   const getUserTheme = () => {
     const localStorageTheme = localStorage.getItem('theme') ?? ''
     if (isValidTheme(localStorageTheme)) {
@@ -33,6 +30,9 @@ export const usePreferencesStore = defineStore('preferences', () => {
   const toggleTheme = () => {
     theme.value = theme.value === 'dark' ? 'light' : 'dark'
   }
+
+  const isValidLanguage = (value: string): value is Language =>
+    VALID_LANGUAGES.includes(value as Language)
 
   const getUserLanguage = () => {
     const localStorageLanguage = localStorage.getItem('lang') ?? ''
