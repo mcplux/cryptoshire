@@ -1,6 +1,8 @@
 import { computed, ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 
+import i18n from '@/plugins/i18n'
+
 type Theme = 'light' | 'dark'
 type Language = 'en' | 'es'
 
@@ -19,12 +21,14 @@ export const usePreferencesStore = defineStore('preferences', () => {
 
   const getUserTheme = () => {
     const localStorageTheme = localStorage.getItem('theme') ?? ''
+    let chosenTheme: Theme
     if (isValidTheme(localStorageTheme)) {
-      theme.value = localStorageTheme
+      chosenTheme = localStorageTheme
     } else {
-      const userTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-      theme.value = userTheme
+      chosenTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
+    theme.value = chosenTheme
+    localStorage.setItem('theme', chosenTheme)
   }
 
   const toggleTheme = () => {
@@ -36,14 +40,16 @@ export const usePreferencesStore = defineStore('preferences', () => {
 
   const getUserLanguage = () => {
     const localStorageLanguage = localStorage.getItem('lang') ?? ''
+    let chosenLanguage: Language
     if (isValidLanguage(localStorageLanguage)) {
-      language.value = localStorageLanguage
+      chosenLanguage = localStorageLanguage
     } else {
       const browserLanguage = navigator.language.split('-')[0]
-      language.value = isValidLanguage(browserLanguage) ? browserLanguage : 'en'
+      chosenLanguage = isValidLanguage(browserLanguage) ? browserLanguage : 'en'
     }
-
-    console.log(language.value)
+    language.value = chosenLanguage
+    i18n.global.locale.value = chosenLanguage
+    localStorage.setItem('lang', chosenLanguage)
   }
 
   const setLanguage = (lang: Language) => {
@@ -58,6 +64,7 @@ export const usePreferencesStore = defineStore('preferences', () => {
 
   watch(language, (newLang) => {
     localStorage.setItem('lang', newLang)
+    i18n.global.locale.value = newLang
   })
 
   return {
