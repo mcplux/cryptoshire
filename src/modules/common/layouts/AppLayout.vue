@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePreferencesStore } from '../stores/preferences.store'
-import SunIcon from '../components/icons/SunIcon.vue'
-import MoonIcon from '../components/icons/MoonIcon.vue'
+import LanguageMenu from '../components/LanguageMenu.vue'
+import { MoonIcon, SunIcon } from '@heroicons/vue/16/solid'
 
 const preferencesStore = usePreferencesStore()
 </script>
@@ -14,10 +14,13 @@ const preferencesStore = usePreferencesStore()
       CryptoShire
     </RouterLink>
 
-    <button @click="preferencesStore.toggleTheme()" class="cursor-pointer">
-      <MoonIcon v-if="preferencesStore.isDark" />
-      <SunIcon v-else />
-    </button>
+    <div class="flex gap-2 items-center">
+      <LanguageMenu />
+      <button @click="preferencesStore.toggleTheme()" class="cursor-pointer">
+        <MoonIcon class="size-8" v-if="preferencesStore.isDark" />
+        <SunIcon class="size-8" v-else />
+      </button>
+    </div>
   </header>
 
   <main class="mt-10 px-5 container mx-auto">

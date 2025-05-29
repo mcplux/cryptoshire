@@ -16,7 +16,7 @@ const isChangePositive = computed(() => +props.crypto.changePercent24Hr >= 0)
 
 <template>
   <RouterLink
-    class="border border-l-8 border-gray-700 dark:border-gray-400 p-5 rounded shadow hover:scale-105 hover:bg-white dark:hover:bg-gray-500 transition-all"
+    class="border border-l-8 border-gray-700 dark:border-gray-400 p-5 rounded shadow hover:scale-105 hover:bg-white dark:hover:bg-gray-700 transition-all"
     :class="[
       isChangePositive
         ? 'border-l-green-600 dark:border-l-green-800'

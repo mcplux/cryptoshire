@@ -72,6 +72,7 @@ export const usePreferencesStore = defineStore('preferences', () => {
     toggleTheme,
     getUserLanguage,
     setLanguage,
+    selectedLanguage: computed(() => language.value),
     languageOptions: LANGUAGE_OPTIONS,
     isDark: computed(() => theme.value === 'dark'),
   }
