@@ -6,6 +6,7 @@ const preferencesStore = usePreferencesStore()
 
 onMounted(() => {
   preferencesStore.getUserTheme()
+  preferencesStore.getUserLanguage()
 })
 </script>
 
