@@ -22,7 +22,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-32 sm:w-48">
+  <div class="w-28 sm:w-48 text-sm">
     <Listbox v-model="selectedLanguage">
       <div class="relative mt-1">
         <ListboxButton
@@ -40,7 +40,7 @@ onMounted(() => {
           leave-to-class="opacity-0"
         >
           <ListboxOptions
-            class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-gray-700 py-1 shadow-lg focus:outline-none text-sm"
+            class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-gray-700 py-1 shadow-lg focus:outline-none"
           >
             <ListboxOption
               v-slot="{ active, selected }"
@@ -54,7 +54,7 @@ onMounted(() => {
                   active
                     ? 'bg-blue-100 text-blue-900 dark:bg-gray-100 dark:text-gray-900'
                     : 'text-gray-900 dark:text-gray-100',
-                  'relative cursor-pointer select-none py-2 pl-10 pr-4',
+                  'relative cursor-pointer select-none py-2 pl-7 sm:pl-10 pr-4',
                 ]"
               >
                 <span :class="[selected ? 'font-bold' : 'font-normal', 'block truncate']">{{
@@ -62,7 +62,7 @@ onMounted(() => {
                 }}</span>
                 <span
                   v-if="selected"
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600 dark:text-gray-400"
+                  class="absolute inset-y-0 left-0 flex items-center pl-1 sm:pl-3 text-blue-600 dark:text-gray-400"
                 >
                   <CheckIcon class="size-5" />
                 </span>

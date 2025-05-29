@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { MoonIcon, SunIcon } from '@heroicons/vue/16/solid'
 import { usePreferencesStore } from '../stores/preferences.store'
 import LanguageMenu from '../components/LanguageMenu.vue'
-import { MoonIcon, SunIcon } from '@heroicons/vue/16/solid'
 
 const preferencesStore = usePreferencesStore()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -11,7 +13,7 @@ const preferencesStore = usePreferencesStore()
     class="bg-blue-400 dark:bg-slate-900 text-white py-8 px-5 shadow-lg flex items-center justify-between"
   >
     <RouterLink :to="{ name: 'cryptos' }" class="font-bold text-3xl md:text-4xl">
-      CryptoShire
+      {{ t('app.title') }}
     </RouterLink>
 
     <div class="flex gap-2 items-center">
@@ -28,6 +30,6 @@ const preferencesStore = usePreferencesStore()
   </main>
 
   <footer class="text-gray-700 dark:text-gray-300 text-center my-10">
-    &copy;All rights reserved - CryptoShire - {{ new Date().getFullYear() }}
+    &copy; {{ t('app.copy') }} - {{ t('app.title') }} - {{ new Date().getFullYear() }}
   </footer>
 </template>

@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "CryptoShire",
-    "subtitle": "Explora las criptomonedas más importantes del mercado."
+    "subtitle": "Explora las criptomonedas más importantes del mercado.",
+    "copy": "Todos los derechos reservados"
   },
   "crypto": {
     "rank": "Rango",
