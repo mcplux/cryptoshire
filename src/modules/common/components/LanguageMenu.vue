@@ -2,22 +2,19 @@
 import { onMounted, ref, watch } from 'vue'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/16/solid'
+import { useLanguage } from '../composables/useLanguage'
 
-import { usePreferencesStore } from '../stores/preferences.store'
+const { languageOptions, setLanguage, language } = useLanguage()
 
-const preferencesStore = usePreferencesStore()
-
-const selectedLanguage = ref(preferencesStore.languageOptions[0])
+const selectedLanguage = ref(languageOptions[0])
 
 watch(selectedLanguage, (newLang) => {
-  preferencesStore.setLanguage(newLang.code)
+  setLanguage(newLang.code)
 })
 
 onMounted(() => {
   selectedLanguage.value =
-    preferencesStore.languageOptions.find(
-      (lang) => lang.code === preferencesStore.selectedLanguage,
-    ) ?? preferencesStore.languageOptions[0]
+    languageOptions.find((lang) => lang.code === language.value) ?? languageOptions[0]
 })
 </script>
 
@@ -44,7 +41,7 @@ onMounted(() => {
           >
             <ListboxOption
               v-slot="{ active, selected }"
-              v-for="person in preferencesStore.languageOptions"
+              v-for="person in languageOptions"
               :key="person.code"
               :value="person"
               as="template"

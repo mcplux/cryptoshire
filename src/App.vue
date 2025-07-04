@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { usePreferencesStore } from './modules/common/stores/preferences.store'
-
-const preferencesStore = usePreferencesStore()
-
-onMounted(() => {
-  preferencesStore.getUserTheme()
-  preferencesStore.getUserLanguage()
-})
+import { useTheme, useLanguage } from './modules/common/composables'
+useTheme()
+useLanguage()
 </script>
 
 <template>

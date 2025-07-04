@@ -11,16 +11,16 @@ import {
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
 
-import { usePreferencesStore } from '@/modules/common/stores/preferences.store'
 import type { CryptoHistory } from '../interfaces'
 import { computed } from 'vue'
+import { useTheme } from '@/modules/common/composables'
 
 const GRAY_200 = '#e5e7eb'
 const GRAY_700 = '#364153'
 const INDIGO_400 = '#7c86ff'
 const INDIGO_500 = '#615fff'
 
-const preferencesStore = usePreferencesStore()
+const { isDarkMode } = useTheme()
 
 const props = defineProps<{
   history: CryptoHistory[]
@@ -33,12 +33,12 @@ const options = computed(() => ({
   responsive: true,
   scales: {
     x: {
-      ticks: { color: preferencesStore.isDark ? GRAY_200 : GRAY_700 },
-      grid: { color: preferencesStore.isDark ? GRAY_700 : GRAY_200 },
+      ticks: { color: isDarkMode ? GRAY_200 : GRAY_700 },
+      grid: { color: isDarkMode ? GRAY_700 : GRAY_200 },
     },
     y: {
-      ticks: { color: preferencesStore.isDark ? GRAY_200 : GRAY_700 },
-      grid: { color: preferencesStore.isDark ? GRAY_700 : GRAY_200 },
+      ticks: { color: isDarkMode ? GRAY_200 : GRAY_700 },
+      grid: { color: isDarkMode ? GRAY_700 : GRAY_200 },
     },
   },
 }))

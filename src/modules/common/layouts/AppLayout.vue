@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { MoonIcon, SunIcon } from '@heroicons/vue/16/solid'
-import { usePreferencesStore } from '../stores/preferences.store'
 import LanguageMenu from '../components/LanguageMenu.vue'
+import { useTheme } from '../composables'
 
-const preferencesStore = usePreferencesStore()
+const { toggleTheme, isDarkMode } = useTheme()
 const { t } = useI18n()
 </script>
 
@@ -18,8 +18,8 @@ const { t } = useI18n()
 
     <div class="flex gap-2 items-center">
       <LanguageMenu />
-      <button @click="preferencesStore.toggleTheme()" class="cursor-pointer">
-        <MoonIcon class="size-8" v-if="preferencesStore.isDark" />
+      <button @click="toggleTheme()" class="cursor-pointer">
+        <MoonIcon class="size-8" v-if="isDarkMode" />
         <SunIcon class="size-8" v-else />
       </button>
     </div>
