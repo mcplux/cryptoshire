@@ -33,12 +33,12 @@ const options = computed(() => ({
   responsive: true,
   scales: {
     x: {
-      ticks: { color: isDarkMode ? GRAY_200 : GRAY_700 },
-      grid: { color: isDarkMode ? GRAY_700 : GRAY_200 },
+      ticks: { color: isDarkMode.value ? GRAY_200 : GRAY_700 },
+      grid: { color: isDarkMode.value ? GRAY_700 : GRAY_200 },
     },
     y: {
-      ticks: { color: isDarkMode ? GRAY_200 : GRAY_700 },
-      grid: { color: isDarkMode ? GRAY_700 : GRAY_200 },
+      ticks: { color: isDarkMode.value ? GRAY_200 : GRAY_700 },
+      grid: { color: isDarkMode.value ? GRAY_700 : GRAY_200 },
     },
   },
 }))
